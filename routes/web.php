@@ -26,18 +26,16 @@ Route::get('/settings', function () {
 })->name("settings");
 
 //rute za pismo
-Route::get('/pismo', function () {
-    return view('pismo.index');
-})->name("pismo.index");
+Route::get('/pismo', [PismoController::class,'index'])->name("pismo.index");
 
-Route::get('/pismo-create', [PismoKontroler::class,'create'])->name("pismo.create");
+Route::get('/pismo-create', [PismoController::class,'create'])->name("pismo.create");
 
-Route::post('/pismo-save', [PismoKontroler::class,'save'])->name("pismo.save");
+Route::post('/pismo-save', [PismoController::class,'save'])->name("pismo.save");
 
-Route::get('/pismo-delete/{id}', [PismoKontroler::class,'delete'])->name("pismo.delete");
+Route::get('/pismo-delete/{id}', [PismoController::class,'delete'])->name("pismo.delete");
 
-Route::get('/pismo-edit/{id}', [PismoKontroler::class,'edit'])->name("pismo.edit");
+Route::get('/pismo-edit/{id}', [PismoController::class,'edit'])->name("pismo.edit");
 
-Route::post('/pismo-update', [PismoKontroler::class,'update'])->name("pismo.update");
+Route::post('/pismo-update', [PismoController::class,'update'])->name("pismo.update");
 
 

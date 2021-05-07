@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 
-class PismoKontroler extends Controller
+class PismoController extends Controller
 {
     public function index(){
         $pisma=DB::table('pismo')->get();
@@ -19,10 +19,10 @@ class PismoKontroler extends Controller
 
     public function save(Request $request){
         $request->validate([
-            'nazivPismo'=>'require';
+            'nazivPismo'=>'require'
         ]);
         $pismo = DB::table("pismo")->insert([
-            'Naziv'=>$request->post('nazivPismo');
+            'Naziv'=>$request->post('nazivPismo')
 
         ]);
 
@@ -42,25 +42,25 @@ class PismoKontroler extends Controller
         $pismo = DB::table("pismo")->where('Id', $id)->delete();
 
         if($pismo){
-            return redirect()->route('pismo.index')->with('success','Pismo je uspjesno dodato');
+            return redirect()->route('pismo.index')->with('success','Pismo je uspjesno obrisano');
         }else{
-            return redirect()->route('pismo.index')->with('fail','Pismo nije uspjesno dodato');
+            return redirect()->route('pismo.index')->with('fail','Pismo nije uspjesno obrisano');
         }
     }
 
     public function update(Request $request){
         $request->validate([
-            'nazivPismoEdit'=>'require';
+            'nazivPismoEdit'=>'require'
         ]);
         $pismo = DB::table('pismo')->where('Id',$request->post('id'))->update([
-            'Naziv'=>$request->post('nazivPismoEdit');
+            'Naziv'=>$request->post('nazivPismoEdit')
 
         ]);
 
         if($pismo){
-            return redirect()->route('pismo.index')->with('success','Pismo je uspjesno dodato');
+            return redirect()->route('pismo.index')->with('success','Pismo je uspjesno promjenjeno');
         }else{
-            return redirect()->route('pismo.index')->with('fail','Pismo nije uspjesno dodato');
+            return redirect()->route('pismo.index')->with('fail','Pismo nije uspjesno promjenjeno');
         }
     }
 
